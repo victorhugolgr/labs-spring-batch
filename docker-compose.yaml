@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    ead-db:
+        image: postgres:13.2-alpine
+        container_name: lab-spring-batch-db
+        network_mode: host
+        restart: always
+        tty: true
+        volumes:
+            - ./docker/postgres:/docker-entrypoint-initdb.d
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_MULTIPLE_DATABASES=batch,app
